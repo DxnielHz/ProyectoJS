@@ -1,0 +1,88 @@
+<div class="container py-4">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">Gestión de Clientes</div>
+                <div class="card-body">
+                    <form [formGroup]="clienteForm" (ngSubmit)="onSubmit()">
+                        <div class="mb-3">
+                            <label for="nombreCliente" class="form-label">Nombre</label>
+                            <input type="text" id="nombreCliente" class="form-control" formControlName="nombre"
+                                placeholder="Ingrese el nombre">
+                            <div *ngIf="clienteForm.get('nombre')?.errors?.['required']" class="text-danger">Nombre es
+                                obligatorio.</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="correoCliente" class="form-label">Correo</label>
+                            <input type="email" id="correoCliente" class="form-control" formControlName="correo"
+                                placeholder="Ingrese el correo">
+                            <div *ngIf="clienteForm.get('correo')?.errors?.['required']" class="text-danger">Correo es
+                                obligatorio.</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="telefonoCliente" class="form-label">Teléfono</label>
+                            <input type="text" id="telefonoCliente" class="form-control" formControlName="telefono"
+                                placeholder="Ingrese el teléfono">
+                            <div *ngIf="clienteForm.get('telefono')?.errors?.['required']" class="text-danger">Teléfono
+                                es obligatorio.</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="direccionCliente" class="form-label">Dirección</label>
+                            <input type="text" id="direccionCliente" class="form-control" formControlName="direccion"
+                                placeholder="Ingrese la dirección">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">{{ isEditMode ? 'Actualizar' : 'Añadir'
+                            }}</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="accordion mt-3" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Lista de Tiendas
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Nombre</th>
+                                        <th>Correo</th>
+                                        <th>Teléfono</th>
+                                        <th>Dirección</th>
+                                        <th>Opciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let cliente of clientes; let i = index">
+                                        <td>{{ i + 1 }}</td>
+                                        <td>{{ cliente.nombre }}</td>
+                                        <td>{{ cliente.correo }}</td>
+                                        <td>{{ cliente.telefono }}</td>
+                                        <td>{{ cliente.direccion }}</td>
+                                        <td class="text-center">
+                                            <button class="btn btn-warning btn-sm"
+                                                (click)="onEdit(cliente)">Editar</button>
+                                            <button class="btn btn-danger btn-sm"
+                                                (click)="onDelete(cliente._id)">Eliminar</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="card shadow" style="width: 24rem;">
+        <div class="card-body">
+            <h5 class="card-title text-center mb-4">Crea tu cuenta</h5>
+            <form>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Correo Electrónico</label>
+                    <input type="email" class="form-control" id="email" placeholder="usuario@ejemplo.com" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="password" placeholder="******" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Repetir Contraseña</label>
+                    <input type="password" class="form-control" id="password" placeholder="******" required>
+                </div>
+                <div class="row">
+                    <h6 class="col-6">Si ya tienes cuenta?</h6>
+                    <button class="btn btn-success col-5" routerLink="/login" routerLinkActive="active">Registrate</button>
+                </div>
+                <button type="submit" class="btn btn-primary w-100 mt-4">Ingresar</button>
+            </form>
+        </div>
+    </div>
+</div>

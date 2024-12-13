@@ -1,0 +1,77 @@
+<div class="container py-4">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">Gestión de Tiendas</div>
+          <div class="card-body">
+            <form [formGroup]="tiendaForm" (ngSubmit)="onSubmit()">
+              <div class="mb-3">
+                <label for="nombreTienda" class="form-label">Nombre de la Tienda</label>
+                <input type="text" id="nombreTienda" class="form-control" formControlName="nombre" placeholder="Ingrese el nombre">
+                <div *ngIf="tiendaForm.get('nombre')?.errors?.['required']" class="text-danger">Nombre es obligatorio.</div>
+              </div>
+  
+              <div class="mb-3">
+                <label for="direccion" class="form-label">Dirección</label>
+                <input type="text" id="direccion" class="form-control" formControlName="direccion" placeholder="Ingrese dirección de la tienda">
+              </div>
+  
+              <div class="mb-3">
+                <label for="ciudad" class="form-label">Ciudad</label>
+                <input type="text" id="ciudad" class="form-control" formControlName="ciudad" placeholder="Ingrese Ciudad de la tienda">
+              </div>
+  
+              <div class="mb-3">
+                <label for="telefono" class="form-label">Contacto</label>
+                <input type="tel" id="telefono" class="form-control" formControlName="contacto" placeholder="Ingrese contacto de la tienda">
+              </div>
+  
+              <button type="submit" class="btn btn-primary">
+                {{ isEditMode ? 'Actualizar' : 'Añadir' }}
+              </button>
+            </form>
+          </div>
+        </div>
+  
+        <div class="accordion mt-3" id="accordionExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Lista de Tiendas
+              </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Tienda</th>
+                      <th>Dirección</th>
+                      <th>Ciudad</th>
+                      <th>Contacto</th>
+                      <th>Opciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let tienda of tiendas; let i = index">
+                      <td>{{ i + 1 }}</td>
+                      <td>{{ tienda.nombre }}</td>
+                      <td>{{ tienda.direccion }}</td>
+                      <td>{{ tienda.ciudad }}</td>
+                      <td>{{ tienda.contacto }}</td>
+                      <td class="text-center">
+                        <button class="btn btn-warning btn-sm" (click)="onEdit(tienda)">Editar</button>
+                        <button class="btn btn-danger btn-sm" (click)="onDelete(tienda._id)">Eliminar</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
